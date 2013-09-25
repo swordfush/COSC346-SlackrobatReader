@@ -13,6 +13,7 @@
 		C50A374817F3976600E8DDA1 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C50A374617F3976600E8DDA1 /* Credits.rtf */; };
 		C50A374B17F3976700E8DDA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A374A17F3976700E8DDA1 /* AppDelegate.m */; };
 		C50A374E17F3976700E8DDA1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50A374C17F3976700E8DDA1 /* MainMenu.xib */; };
+		C50A375617F3988800E8DDA1 /* LibraryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A375517F3988800E8DDA1 /* LibraryItemModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		C50A374917F3976600E8DDA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C50A374A17F3976700E8DDA1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C50A374D17F3976700E8DDA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C50A375417F3988800E8DDA1 /* LibraryItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemModel.h; sourceTree = "<group>"; };
+		C50A375517F3988800E8DDA1 /* LibraryItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				C50A374A17F3976700E8DDA1 /* AppDelegate.m */,
 				C50A374C17F3976700E8DDA1 /* MainMenu.xib */,
 				C50A373E17F3976500E8DDA1 /* Supporting Files */,
+				C50A375417F3988800E8DDA1 /* LibraryItemModel.h */,
+				C50A375517F3988800E8DDA1 /* LibraryItemModel.m */,
 			);
 			path = SlackrobatReader;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			files = (
 				C50A374417F3976600E8DDA1 /* main.m in Sources */,
 				C50A374B17F3976700E8DDA1 /* AppDelegate.m in Sources */,
+				C50A375617F3988800E8DDA1 /* LibraryItemModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,4 +12,10 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
+@property NSMutableArray *libraryItems;
+@property NSMutableArray *openDocumentWindows;
+
+- (IBAction)addItem:(id)sender;
+- (IBAction)removeItem:(id)sender;
+
 @end
