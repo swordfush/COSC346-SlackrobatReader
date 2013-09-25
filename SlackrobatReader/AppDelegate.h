@@ -1,0 +1,15 @@
+//
+//  AppDelegate.h
+//  SlackrobatReader
+//
+//  Created by Stuart Johnston on 9/26/13.
+//  Copyright (c) 2013 Stuart Johnston. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+@interface AppDelegate : NSObject <NSApplicationDelegate>
+
+@property (assign) IBOutlet NSWindow *window;
+
+@end
