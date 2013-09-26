@@ -24,7 +24,11 @@
     LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtPath:@"test"];
     
     [self setLibraryItems:[NSMutableArray arrayWithObjects:model, nil]];
+    
+    
+    [[self libraryItemsView] addObserver:self forKeyPath:@"selectionIndexes" options:NSKeyValueObservingOptionNew context:nil];
 }
+
 
 - (void)insertObject:(LibraryItemModel *)object inLibraryItemsAtIndex:(NSUInteger)index {
     [libraryItems insertObject:object atIndex:index];
@@ -42,6 +46,15 @@
     return libraryItems;
 }
 
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath compare:@"selectionIndexes"] == NSOrderedSame) {
+        NSIndexSet *indices = change[@"new"];
+        
+        [[self removeItemButton] setEnabled:[indices count] > 0];
+    }
+}
 
 
 
@@ -66,10 +79,11 @@
 }
 
 - (IBAction)removeItem:(id)sender {
-    for (LibraryItemModel *model in libraryItems) {
-        NSLog(@"%@", [model documentFilePath]);
+    // Find the index selected and remove it
+    NSIndexSet *indices = [self.libraryItemsView selectionIndexes];
+    if ([indices count] > 0) {
+        [self removeObjectFromLibraryItemsAtIndex:[indices firstIndex]];
     }
-    NSLog(@"%li", (unsigned long)[libraryItems count]);
 }
 
 @end

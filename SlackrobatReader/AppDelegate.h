@@ -18,4 +18,7 @@
 - (IBAction)addItem:(id)sender;
 - (IBAction)removeItem:(id)sender;
 
+@property (weak) IBOutlet NSCollectionView *libraryItemsView;
+@property (weak) IBOutlet NSButton *removeItemButton;
+
 @end
