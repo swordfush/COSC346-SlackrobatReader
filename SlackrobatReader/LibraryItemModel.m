@@ -11,11 +11,13 @@
 @implementation LibraryItemModel
 
 @synthesize documentFilePath;
+@synthesize documentFileName;
 
 - (id)initWithPDFAtPath:(NSString *)filePath {
     self = [super init];
     if (self) {
         documentFilePath = filePath;
+        self->documentFileName = [[documentFilePath lastPathComponent] stringByDeletingPathExtension];
     }
     return self;
 }

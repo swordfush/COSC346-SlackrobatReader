@@ -13,5 +13,6 @@
 - (id)initWithPDFAtPath:(NSString *)filePath;
 
 @property NSString *documentFilePath;
+@property (readonly) NSString *documentFileName;
 
 @end
