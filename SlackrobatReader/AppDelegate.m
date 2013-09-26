@@ -16,30 +16,66 @@
 @synthesize libraryItems;
 @synthesize openDocumentWindows;
 
+NSString * const LibraryItemsKey = @"LibraryItems";
+
++ (void)initialize {
+    // Use preferences to store our library items
+    NSData *emptyArrayData = [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] init]];
+    NSDictionary *defaultValues = [[NSDictionary alloc] initWithObjectsAndKeys:emptyArrayData, LibraryItemsKey, nil];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     openDocumentWindows = [[NSMutableArray alloc] init];
 }
 
 - (void)awakeFromNib {
-    LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtURL:[NSURL URLWithString:@"test"]];
+    // Load stored preferences
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *loadedItemURLs = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:LibraryItemsKey]];
     
-    [self setLibraryItems:[NSMutableArray arrayWithObjects:model, nil]];
+    NSMutableArray *loadedItems = [[NSMutableArray alloc] init];
     
+    for (NSString *url in loadedItemURLs) {
+        [loadedItems addObject:[[LibraryItemModel alloc] initWithPDFAtURL:[NSURL URLWithString:url]]];
+    }
+    
+    [self setLibraryItems:loadedItems];
+    
+    // Subscribe to the selection index so we can disable the remove button when needed
     [[self libraryItemsView] addObserver:self forKeyPath:@"selectionIndexes" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 
+- (void)updateUserPreferences {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableArray *urls = [[NSMutableArray alloc] init];
+    
+    for (LibraryItemModel *item in libraryItems) {
+        [urls addObject:[[item documentURL] absoluteString]];
+    }
+    
+    NSData *itemsData = [NSKeyedArchiver archivedDataWithRootObject:urls];
+    [defaults setObject:itemsData forKey:LibraryItemsKey];
+    
+}
+
 - (void)insertObject:(LibraryItemModel *)object inLibraryItemsAtIndex:(NSUInteger)index {
     [libraryItems insertObject:object atIndex:index];
+    [self updateUserPreferences];
 }
 
 - (void)removeObjectFromLibraryItemsAtIndex:(NSUInteger)index {
     [libraryItems removeObjectAtIndex:index];
+    [self updateUserPreferences];
 }
 
 - (void)setLibraryItems:(NSMutableArray *)x {
     libraryItems = x;
+    [self updateUserPreferences];
 }
 
 - (NSArray *)libraryItems {
