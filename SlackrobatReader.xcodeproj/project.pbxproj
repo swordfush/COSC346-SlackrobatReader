@@ -14,7 +14,8 @@
 		C50A374B17F3976700E8DDA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A374A17F3976700E8DDA1 /* AppDelegate.m */; };
 		C50A374E17F3976700E8DDA1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50A374C17F3976700E8DDA1 /* MainMenu.xib */; };
 		C50A375617F3988800E8DDA1 /* LibraryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A375517F3988800E8DDA1 /* LibraryItemModel.m */; };
-		C50A375C17F3C01000E8DDA1 /* LibraryItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A375B17F3C01000E8DDA1 /* LibraryItemViewController.m */; };
+		C5D7500717F3F19700C87C65 /* LibraryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7500617F3F19700C87C65 /* LibraryItemView.m */; };
+		C5D7500A17F3F3F000C87C65 /* LibraryItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +34,10 @@
 		C50A374D17F3976700E8DDA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C50A375417F3988800E8DDA1 /* LibraryItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemModel.h; sourceTree = "<group>"; };
 		C50A375517F3988800E8DDA1 /* LibraryItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemModel.m; sourceTree = "<group>"; };
-		C50A375A17F3C01000E8DDA1 /* LibraryItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemViewController.h; sourceTree = "<group>"; };
-		C50A375B17F3C01000E8DDA1 /* LibraryItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemViewController.m; sourceTree = "<group>"; };
+		C5D7500517F3F19700C87C65 /* LibraryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemView.h; sourceTree = "<group>"; };
+		C5D7500617F3F19700C87C65 /* LibraryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemView.m; sourceTree = "<group>"; };
+		C5D7500817F3F3F000C87C65 /* LibraryItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemViewController.h; sourceTree = "<group>"; };
+		C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +97,10 @@
 				C50A373E17F3976500E8DDA1 /* Supporting Files */,
 				C50A375417F3988800E8DDA1 /* LibraryItemModel.h */,
 				C50A375517F3988800E8DDA1 /* LibraryItemModel.m */,
-				C50A375A17F3C01000E8DDA1 /* LibraryItemViewController.h */,
-				C50A375B17F3C01000E8DDA1 /* LibraryItemViewController.m */,
+				C5D7500517F3F19700C87C65 /* LibraryItemView.h */,
+				C5D7500617F3F19700C87C65 /* LibraryItemView.m */,
+				C5D7500817F3F3F000C87C65 /* LibraryItemViewController.h */,
+				C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */,
 			);
 			path = SlackrobatReader;
 			sourceTree = "<group>";
@@ -179,7 +184,8 @@
 				C50A374417F3976600E8DDA1 /* main.m in Sources */,
 				C50A374B17F3976700E8DDA1 /* AppDelegate.m in Sources */,
 				C50A375617F3988800E8DDA1 /* LibraryItemModel.m in Sources */,
-				C50A375C17F3C01000E8DDA1 /* LibraryItemViewController.m in Sources */,
+				C5D7500717F3F19700C87C65 /* LibraryItemView.m in Sources */,
+				C5D7500A17F3F3F000C87C65 /* LibraryItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +321,7 @@
 				C50A375317F3976700E8DDA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -25,7 +25,6 @@
     
     [self setLibraryItems:[NSMutableArray arrayWithObjects:model, nil]];
     
-    
     [[self libraryItemsView] addObserver:self forKeyPath:@"selectionIndexes" options:NSKeyValueObservingOptionNew context:nil];
 }
 

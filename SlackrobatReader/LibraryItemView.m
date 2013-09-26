@@ -10,6 +10,8 @@
 
 @implementation LibraryItemView
 
+@synthesize selected;
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -22,7 +24,12 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    // Drawing code here.
+    if (selected) {
+        NSRect outerFrame = NSMakeRect(0, 0, 128, 128);
+        NSRect selectedFrame = NSInsetRect(outerFrame, 0, 0);
+        [[NSColor selectedMenuItemColor] set];
+        [NSBezierPath strokeRect:selectedFrame];
+    }
 }
 
 @end

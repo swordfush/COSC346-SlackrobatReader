@@ -1,5 +1,5 @@
 //
-//  LibraryItemView.h
+//  LibraryItemViewController.h
 //  SlackrobatReader
 //
 //  Created by Stuart Johnston on 9/26/13.
@@ -9,7 +9,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface LibraryItemViewController : NSCollectionViewItem
-
-@property (getter = isSelected) BOOL selected;
 
 @end

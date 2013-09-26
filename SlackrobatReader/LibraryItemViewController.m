@@ -1,5 +1,5 @@
 //
-//  LibraryItemView.m
+//  LibraryItemViewController.m
 //  SlackrobatReader
 //
 //  Created by Stuart Johnston on 9/26/13.
@@ -7,6 +7,8 @@
 //
 
 #import "LibraryItemViewController.h"
+
+#import "LibraryItemView.h"
 
 @interface LibraryItemViewController ()
 
@@ -24,16 +26,11 @@
     return self;
 }
 
-- (BOOL)isSelected {
-    return [super isSelected];
-}
-
-- (void)setSelected:(BOOL)flag
+-(void)setSelected:(BOOL)flag
 {
     [super setSelected:flag];
-    if (flag) {
-        
-    }
+    [(LibraryItemView *)[self view] setSelected:flag];
+    [(LibraryItemView *)[self view] setNeedsDisplay:YES];
 }
 
 @end

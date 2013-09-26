@@ -10,4 +10,6 @@
 
 @interface LibraryItemView : NSView
 
+@property BOOL selected;
+
 @end
