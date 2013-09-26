@@ -16,6 +16,9 @@
 		C50A375617F3988800E8DDA1 /* LibraryItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A375517F3988800E8DDA1 /* LibraryItemModel.m */; };
 		C5D7500717F3F19700C87C65 /* LibraryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7500617F3F19700C87C65 /* LibraryItemView.m */; };
 		C5D7500A17F3F3F000C87C65 /* LibraryItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */; };
+		C5D7500C17F3FD6000C87C65 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D7500B17F3FD6000C87C65 /* DocumentWindow.xib */; };
+		C5D7500E17F3FE3400C87C65 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D7500D17F3FE3400C87C65 /* Quartz.framework */; };
+		C5D7501117F3FEB700C87C65 /* DocumentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7501017F3FEB700C87C65 /* DocumentWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,10 @@
 		C5D7500617F3F19700C87C65 /* LibraryItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemView.m; sourceTree = "<group>"; };
 		C5D7500817F3F3F000C87C65 /* LibraryItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemViewController.h; sourceTree = "<group>"; };
 		C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryItemViewController.m; sourceTree = "<group>"; };
+		C5D7500B17F3FD6000C87C65 /* DocumentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentWindow.xib; sourceTree = "<group>"; };
+		C5D7500D17F3FE3400C87C65 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		C5D7500F17F3FEB700C87C65 /* DocumentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentWindowController.h; sourceTree = "<group>"; };
+		C5D7501017F3FEB700C87C65 /* DocumentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5D7500E17F3FE3400C87C65 /* Quartz.framework in Frameworks */,
 				C50A373817F3976500E8DDA1 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +80,7 @@
 		C50A373617F3976500E8DDA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5D7500D17F3FE3400C87C65 /* Quartz.framework */,
 				C50A373717F3976500E8DDA1 /* Cocoa.framework */,
 				C50A373917F3976500E8DDA1 /* Other Frameworks */,
 			);
@@ -101,6 +110,9 @@
 				C5D7500617F3F19700C87C65 /* LibraryItemView.m */,
 				C5D7500817F3F3F000C87C65 /* LibraryItemViewController.h */,
 				C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */,
+				C5D7500B17F3FD6000C87C65 /* DocumentWindow.xib */,
+				C5D7500F17F3FEB700C87C65 /* DocumentWindowController.h */,
+				C5D7501017F3FEB700C87C65 /* DocumentWindowController.m */,
 			);
 			path = SlackrobatReader;
 			sourceTree = "<group>";
@@ -171,6 +183,7 @@
 				C50A374217F3976500E8DDA1 /* InfoPlist.strings in Resources */,
 				C50A374817F3976600E8DDA1 /* Credits.rtf in Resources */,
 				C50A374E17F3976700E8DDA1 /* MainMenu.xib in Resources */,
+				C5D7500C17F3FD6000C87C65 /* DocumentWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +199,7 @@
 				C50A375617F3988800E8DDA1 /* LibraryItemModel.m in Sources */,
 				C5D7500717F3F19700C87C65 /* LibraryItemView.m in Sources */,
 				C5D7500A17F3F3F000C87C65 /* LibraryItemViewController.m in Sources */,
+				C5D7501117F3FEB700C87C65 /* DocumentWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

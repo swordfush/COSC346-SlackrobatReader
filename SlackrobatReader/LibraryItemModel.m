@@ -10,14 +10,16 @@
 
 @implementation LibraryItemModel
 
-@synthesize documentFilePath;
+@synthesize documentURL;
 @synthesize documentFileName;
+@synthesize document;
 
-- (id)initWithPDFAtPath:(NSString *)filePath {
+- (id)initWithPDFAtURL:(NSURL *)url {
     self = [super init];
     if (self) {
-        documentFilePath = filePath;
-        self->documentFileName = [[documentFilePath lastPathComponent] stringByDeletingPathExtension];
+        documentURL = url;
+        self->documentFileName = [[url lastPathComponent] stringByDeletingPathExtension];
+        document = [[PDFDocument alloc] initWithURL:url];
     }
     return self;
 }

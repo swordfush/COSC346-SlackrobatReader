@@ -32,4 +32,12 @@
     }
 }
 
+- (void)mouseDown:(NSEvent *)theEvent {
+    [super mouseDown:theEvent];
+    if ([theEvent clickCount] > 1) {
+        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick) to:nil from:self];
+        return;
+    }
+}
+
 @end

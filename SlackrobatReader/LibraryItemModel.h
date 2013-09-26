@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Quartz/Quartz.h>
 
 @interface LibraryItemModel : NSObject
 
-- (id)initWithPDFAtPath:(NSString *)filePath;
+- (id)initWithPDFAtURL:(NSURL *)url;
 
-@property NSString *documentFilePath;
+@property (readonly) NSURL *documentURL;
 @property (readonly) NSString *documentFileName;
+@property PDFDocument *document;
 
 @end

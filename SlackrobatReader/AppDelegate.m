@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "LibraryItemModel.h"
+#import "DocumentWindowController.h"
 
 @implementation AppDelegate
 
@@ -21,7 +22,7 @@
 }
 
 - (void)awakeFromNib {
-    LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtPath:@"test"];
+    LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtURL:[NSURL URLWithString:@"test"]];
     
     [self setLibraryItems:[NSMutableArray arrayWithObjects:model, nil]];
     
@@ -55,10 +56,18 @@
     }
 }
 
+- (void)collectionItemViewDoubleClick {
+    NSUInteger index = [[[self libraryItemsView] selectionIndexes] firstIndex];
+    LibraryItemModel *itemModel = libraryItems[index];
+    [self openDocument:itemModel];
+}
 
 
-- (void)openDocument:(NSString *)documentFilePath {
-    // TODO
+
+- (void)openDocument:(LibraryItemModel *)documentModel {
+    DocumentWindowController *documentWindow = [[DocumentWindowController alloc] initWithDocument:documentModel];
+    [openDocumentWindows addObject:documentWindow];
+    [documentWindow showWindow:self];
 }
 
 
@@ -71,8 +80,8 @@
     [fileDialog setAllowedFileTypes:[NSArray arrayWithObjects:@"pdf", nil]];
     
     [fileDialog beginWithCompletionHandler:^(NSInteger result){
-        NSString *filePath = [fileDialog URLs][0];
-        LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtPath:filePath];
+        NSURL *url = [fileDialog URLs][0];
+        LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtURL:url];
         [self insertObject:model inLibraryItemsAtIndex:[libraryItems count]];
     }];
 }
