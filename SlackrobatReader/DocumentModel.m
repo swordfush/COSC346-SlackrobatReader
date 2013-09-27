@@ -6,15 +6,20 @@
 //  Copyright (c) 2013 Stuart Johnston. All rights reserved.
 //
 
-#import "LibraryItemModel.h"
+#import "DocumentModel.h"
 
-@implementation LibraryItemModel
+@implementation DocumentModel
 
 @synthesize documentURL;
 @synthesize documentFileName;
 @synthesize document;
 
 - (id)initWithPDFAtURL:(NSURL *)url {
+    // Ensure the path exists
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:NO]) {
+        return nil;
+    }
+    
     self = [super init];
     if (self) {
         documentURL = url;

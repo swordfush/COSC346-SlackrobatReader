@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "LibraryItemModel.h"
+#import "DocumentModel.h"
 #import "DocumentWindowController.h"
 
 @implementation AppDelegate
@@ -39,7 +39,13 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     NSMutableArray *loadedItems = [[NSMutableArray alloc] init];
     
     for (NSString *url in loadedItemURLs) {
-        [loadedItems addObject:[[LibraryItemModel alloc] initWithPDFAtURL:[NSURL URLWithString:url]]];
+        DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:[NSURL URLWithString:url]];
+        if (model) {
+            [loadedItems addObject:model];
+        } else {
+            NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Failed to load the file %@", url] defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+            [alert runModal];
+        }
     }
     
     [self setLibraryItems:loadedItems];
@@ -49,12 +55,13 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 }
 
 
+// Saves modifications of the user preferences XXX it's currently being used quite often; maybe only perform this on exit?
 - (void)updateUserPreferences {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSMutableArray *urls = [[NSMutableArray alloc] init];
     
-    for (LibraryItemModel *item in libraryItems) {
+    for (DocumentModel *item in libraryItems) {
         [urls addObject:[[item documentURL] absoluteString]];
     }
     
@@ -63,7 +70,7 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     
 }
 
-- (void)insertObject:(LibraryItemModel *)object inLibraryItemsAtIndex:(NSUInteger)index {
+- (void)insertObject:(DocumentModel *)object inLibraryItemsAtIndex:(NSUInteger)index {
     [libraryItems insertObject:object atIndex:index];
     [self updateUserPreferences];
 }
@@ -86,6 +93,7 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath compare:@"selectionIndexes"] == NSOrderedSame) {
+        // Enable/disable remove library item button
         NSIndexSet *indices = change[@"new"];
         
         [[self removeItemButton] setEnabled:[indices count] > 0];
@@ -93,20 +101,22 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 }
 
 - (void)collectionItemViewDoubleClick {
+    // Open a new document
     NSUInteger index = [[[self libraryItemsView] selectionIndexes] firstIndex];
-    LibraryItemModel *itemModel = libraryItems[index];
+    DocumentModel *itemModel = libraryItems[index];
     [self openDocument:itemModel];
 }
 
 
 
-- (void)openDocument:(LibraryItemModel *)documentModel {
+- (void)openDocument:(DocumentModel *)documentModel {
     DocumentWindowController *documentWindow = [[DocumentWindowController alloc] initWithDocument:documentModel];
     [openDocumentWindows addObject:documentWindow];
     [documentWindow showWindow:self];
 }
 
 
+// Adds a pdf document to the library
 - (IBAction)addItem:(id)sender {
     NSOpenPanel * fileDialog = [NSOpenPanel openPanel];
     [fileDialog setAllowsMultipleSelection:NO];
@@ -117,7 +127,7 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     
     [fileDialog beginWithCompletionHandler:^(NSInteger result){
         NSURL *url = [fileDialog URLs][0];
-        LibraryItemModel *model = [[LibraryItemModel alloc] initWithPDFAtURL:url];
+        DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:url];
         [self insertObject:model inLibraryItemsAtIndex:[libraryItems count]];
     }];
 }
@@ -128,6 +138,9 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     if ([indices count] > 0) {
         [self removeObjectFromLibraryItemsAtIndex:[indices firstIndex]];
     }
+    
+    // Unfortunately removing an item does not cause the collection view to update its selection, so we'll deselect everything manually
+    [self.libraryItemsView setSelectionIndexes:[NSIndexSet indexSet]];
 }
 
 @end

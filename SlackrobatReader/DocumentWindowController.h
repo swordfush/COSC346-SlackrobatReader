@@ -9,12 +9,23 @@
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
 
-#import "LibraryItemModel.h"
+#import "DocumentModel.h"
 
-@interface DocumentWindowController : NSWindowController
+@interface DocumentWindowController : NSWindowController <NSToolbarDelegate> 
 
-- (id)initWithDocument:(LibraryItemModel *)documentModel;
+- (id)initWithDocument:(DocumentModel *)document;
+
+@property DocumentModel *documentModel;
+
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
+@property (weak) IBOutlet NSToolbar *toolbar;
+
+
+
+
+- (IBAction)nextPage:(id)sender;
+- (IBAction)previousPage:(id)sender;
+
 
 @end

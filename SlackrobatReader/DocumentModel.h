@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Quartz/Quartz.h>
 
-@interface LibraryItemModel : NSObject
+@interface DocumentModel : NSObject
 
 - (id)initWithPDFAtURL:(NSURL *)url;
 
