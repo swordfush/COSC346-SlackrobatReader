@@ -80,7 +80,7 @@
 - (IBAction)navigateGoTo:(id)sender {
     // Prompt the user for a page number
     NSAlert *alert = [NSAlert alertWithMessageText:@"Go To Page: "
-                                     defaultButton:@"Go To"
+                                     defaultButton:@"Go"
                                    alternateButton:@"Cancel"
                                        otherButton:nil
                          informativeTextWithFormat:@""];
@@ -99,6 +99,21 @@
     }
 }
 
+- (IBAction)search:(id)sender {
+    NSTextField *searchBox = sender;
+    NSString *newSearch = [searchBox stringValue];
+    
+    // Cancel any searches currently being processed
+    if ([[[self documentView] document] isFinding]) {
+        [[[self documentView] document] cancelFindString];
+    }
+    
+    searchSelection = [[[self documentView] document] findString:newSearch fromSelection:searchSelection withOptions:NSCaseInsensitiveSearch];
+    
+    if (searchSelection) {
+        [[self documentView] scrollSelectionToVisible:searchSelection];
+    }
+}
 
 
 @end

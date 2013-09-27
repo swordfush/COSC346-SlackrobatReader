@@ -13,6 +13,8 @@
 
 @interface DocumentWindowController : NSWindowController {
     NSUndoManager *undoManager;
+    NSString *currentSearchValue;
+    PDFSelection *searchSelection;
 }
 
 - (id)initWithDocument:(DocumentModel *)document;
@@ -26,5 +28,7 @@
 - (IBAction)navigateForward:(id)sender;
 - (IBAction)navigateBackward:(id)sender;
 - (IBAction)navigateGoTo:(id)sender;
+
+- (IBAction)search:(id)sender;
 
 @end
