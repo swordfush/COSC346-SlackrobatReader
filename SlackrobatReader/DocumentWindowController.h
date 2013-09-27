@@ -11,7 +11,9 @@
 
 #import "DocumentModel.h"
 
-@interface DocumentWindowController : NSWindowController <NSToolbarDelegate> 
+@interface DocumentWindowController : NSWindowController {
+    NSUndoManager *undoManager;
+}
 
 - (id)initWithDocument:(DocumentModel *)document;
 
@@ -19,13 +21,10 @@
 
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
-@property (weak) IBOutlet NSToolbar *toolbar;
 
 
-
-
-- (IBAction)nextPage:(id)sender;
-- (IBAction)previousPage:(id)sender;
-
+- (IBAction)navigateForward:(id)sender;
+- (IBAction)navigateBackward:(id)sender;
+- (IBAction)navigateGoTo:(id)sender;
 
 @end
