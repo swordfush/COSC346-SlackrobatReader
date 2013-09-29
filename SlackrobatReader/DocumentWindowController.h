@@ -22,15 +22,25 @@
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
 
+@property NSUInteger currentPageNumber;
+
 
 @property BOOL searchBackwards;
 @property BOOL caseInsensitiveSearch;
 @property BOOL searchLiteral;
 
+@property BOOL canZoomIn;
+@property BOOL canZoomOut;
+@property BOOL canZoomToFit;
+
 
 - (IBAction)navigateForward:(id)sender;
 - (IBAction)navigateBackward:(id)sender;
 - (IBAction)navigateGoTo:(id)sender;
+
+- (IBAction)zoomIn:(id)sender;
+- (IBAction)zoomOut:(id)sender;
+- (IBAction)zoomToFit:(id)sender;
 
 - (IBAction)search:(id)sender;
 

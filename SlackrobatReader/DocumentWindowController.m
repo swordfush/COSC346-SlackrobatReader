@@ -22,16 +22,29 @@
 - (id)initWithDocument:(DocumentModel *)document {
     self = [super initWithWindowNibName:@"DocumentWindow"];
     if (self) {
+        // Set the document
         [self setDocumentModel:document];
-        [[self window] setTitle:[NSString stringWithFormat:@"%@ - %@", [documentModel documentFileName], [documentModel documentURL]]];
         [[self documentView] setDocument:[[self documentModel] document]];
         [[self documentThumbnailView] setPDFView:[self documentView]];
         
+        // Set the window title
+//        [[self window] setTitle:[NSString stringWithFormat:@"%@ - %@", [documentModel documentFileName], [documentModel documentURL]]];
+        
+        // Set default search options
         [self setCaseInsensitiveSearch:YES];
         [self setSearchBackwards:NO];
         [self setSearchLiteral:NO];
         
+        // Set up the undo manager used for navigation
         undoManager = [[NSUndoManager alloc] init];
+        
+        // Calculate whether zoom buttons are enabled
+//        [self updateZoomAvailability];
+        
+        // Observe the current page being viewed, unfortunately this cannot be bound directly...
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
+        
+//        [self pageChanged:nil];
     }
     return self;
 }
@@ -41,6 +54,12 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+- (void)pageChanged:(NSNotification *)notification {
+    PDFPage *page = [[self documentView] currentPage];
+    NSUInteger pageIndex = [[[self documentView] document] indexForPage:page];
+    [self setCurrentPageNumber:pageIndex + 1];
 }
 
 
@@ -103,9 +122,35 @@
     }
 }
 
+- (void)updateZoomAvailability {
+    [self setCanZoomIn:[[self documentView] canZoomIn]];
+    [self setCanZoomOut:[[self documentView] canZoomOut]];
+    [self setCanZoomToFit:[[self documentView] scaleFactor] == 1.0];
+}
+
+- (IBAction)zoomIn:(id)sender {
+    [[self documentView] zoomIn:sender];
+    [self updateZoomAvailability];
+}
+
+- (IBAction)zoomOut:(id)sender {
+    [[self documentView] zoomOut:sender];
+    [self updateZoomAvailability];
+}
+
+- (IBAction)zoomToFit:(id)sender {
+    [[self documentView] setAutoScales:YES];
+    [self updateZoomAvailability];
+}
+
 - (IBAction)search:(id)sender {
     NSTextField *searchBox = sender;
     NSString *searchString = [searchBox stringValue];
+    
+    if ([searchString length] == 0) {
+        [[self documentView] setCurrentSelection:nil];
+        return;
+    }
 
     // Set up the search options
     int searchOptions = 0;
