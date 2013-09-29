@@ -13,8 +13,6 @@
 
 @interface DocumentWindowController : NSWindowController {
     NSUndoManager *undoManager;
-    NSString *currentSearchValue;
-    PDFSelection *searchSelection;
 }
 
 - (id)initWithDocument:(DocumentModel *)document;
@@ -23,6 +21,11 @@
 
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
+
+
+@property BOOL searchBackwards;
+@property BOOL caseInsensitiveSearch;
+@property BOOL searchLiteral;
 
 
 - (IBAction)navigateForward:(id)sender;

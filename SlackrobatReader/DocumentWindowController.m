@@ -27,6 +27,10 @@
         [[self documentView] setDocument:[[self documentModel] document]];
         [[self documentThumbnailView] setPDFView:[self documentView]];
         
+        [self setCaseInsensitiveSearch:YES];
+        [self setSearchBackwards:NO];
+        [self setSearchLiteral:NO];
+        
         undoManager = [[NSUndoManager alloc] init];
     }
     return self;
@@ -101,17 +105,60 @@
 
 - (IBAction)search:(id)sender {
     NSTextField *searchBox = sender;
-    NSString *newSearch = [searchBox stringValue];
-    
-    // Cancel any searches currently being processed
-    if ([[[self documentView] document] isFinding]) {
-        [[[self documentView] document] cancelFindString];
+    NSString *searchString = [searchBox stringValue];
+
+    // Set up the search options
+    int searchOptions = 0;
+    if ([self caseInsensitiveSearch]) {
+        searchOptions |= NSCaseInsensitiveSearch;
+    }
+    if ([self searchLiteral]) {
+        searchOptions |= NSLiteralSearch;
+    }
+    if ([self searchBackwards]) {
+        searchOptions |= NSBackwardsSearch;
     }
     
-    searchSelection = [[[self documentView] document] findString:newSearch fromSelection:searchSelection withOptions:NSCaseInsensitiveSearch];
+    PDFSelection *currentSearchSelection = [[self documentView] currentSelection];
+
+    // Perform a new search
+    currentSearchSelection = [[[self documentView] document] findString:searchString fromSelection:currentSearchSelection withOptions:searchOptions];
     
-    if (searchSelection) {
-        [[self documentView] scrollSelectionToVisible:searchSelection];
+    BOOL wrappedAround = NO;
+    if (currentSearchSelection == nil) {
+        // Attempt to wrap around the document to find a result
+        currentSearchSelection = [[[self documentView] document] findString:searchString fromSelection:nil withOptions:searchOptions];
+        
+        wrappedAround = YES;
+    }
+    
+    if (currentSearchSelection == nil) {
+        // If the search selection is still nil then we did not find the string
+        NSString *failNotification = [NSString stringWithFormat:@"Failed to find any occurences of \"%@\"", searchString];
+        NSAlert *alert = [NSAlert alertWithMessageText:failNotification
+                                         defaultButton:nil
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:@""];
+        
+        [alert runModal];
+        
+        [[self documentView] setCurrentSelection:nil];
+    } else {
+        if (wrappedAround) {
+            NSString *wrapNotification = [NSString stringWithFormat:@"Reached the %@ of the document.", [self searchBackwards] ? @"beginning" : @"end"];
+            NSAlert *alert = [NSAlert alertWithMessageText:wrapNotification
+                                             defaultButton:nil
+                                           alternateButton:nil
+                                               otherButton:nil
+                                 informativeTextWithFormat:@""];
+            
+            [alert runModal];
+        }
+        
+        // Highlight and move to the new selection
+        [[self documentView] setCurrentSelection:currentSearchSelection];
+        [[self documentView] scrollSelectionToVisible:nil];
     }
 }
 
