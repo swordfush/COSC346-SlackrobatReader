@@ -26,9 +26,12 @@
 {
     if (selected) {
         NSRect outerFrame = NSMakeRect(0, 0, 128, 128);
-        NSRect selectedFrame = NSInsetRect(outerFrame, 0, 0);
+        NSRect selectedFrame = NSInsetRect(outerFrame, 1, 1);
         [[NSColor selectedMenuItemColor] set];
-        [NSBezierPath strokeRect:selectedFrame];
+        
+        NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:selectedFrame xRadius:6 yRadius:6];
+        [path setLineWidth:2.0];
+        [path stroke];
     }
 }
 
