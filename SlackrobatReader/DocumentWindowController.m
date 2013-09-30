@@ -44,9 +44,6 @@
     [[self documentView] setDocument:[[self documentModel] document]];
     [[self documentThumbnailView] setPDFView:[self documentView]];
     
-    // Set the window title
-//    [[self window] setTitle:[NSString stringWithFormat:@"%@ - %@", [documentModel documentFileName], [documentModel documentURL]]];
-    
     // Observe page changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
     [self pageChanged:nil];
@@ -113,7 +110,7 @@
     [alert setAccessoryView:input];
     NSInteger button = [alert runModal];
     
-    if (button == NSAlertDefaultReturn && [[input stringValue] length] > 0 && [[input stringValue] length] <= [[documentModel document] pageCount]) {
+    if (button == NSAlertDefaultReturn && [[input stringValue] length] > 0 && [input integerValue] <= [[documentModel document] pageCount]) {
         NSUInteger pageNumber = [input integerValue] - 1; // Pages are 1-indexed
         [self goToPageNumber:pageNumber];
     }
