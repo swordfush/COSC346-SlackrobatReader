@@ -12,7 +12,7 @@
 #import "DocumentModel.h"
 
 @interface DocumentWindowController : NSWindowController {
-    NSUndoManager *undoManager;
+    NSUndoManager *navigationUndoManager;
 }
 
 - (id)initWithDocument:(DocumentModel *)document;
@@ -28,6 +28,10 @@
 @property BOOL searchBackwards;
 @property BOOL caseInsensitiveSearch;
 @property BOOL searchLiteral;
+
+@property BOOL canZoomIn;
+@property BOOL canZoomOut;
+@property BOOL canZoomToFit;
 
 
 - (IBAction)navigateForward:(id)sender;

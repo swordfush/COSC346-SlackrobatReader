@@ -22,19 +22,25 @@
 - (id)initWithDocument:(DocumentModel *)document {
     self = [super initWithWindowNibName:@"DocumentWindow"];
     if (self) {
+        // Set the document
         [self setDocumentModel:document];
         [[self window] setTitle:[NSString stringWithFormat:@"%@ - %@", [documentModel documentFileName], [documentModel documentURL]]];
         [[self documentView] setDocument:[[self documentModel] document]];
         [[self documentThumbnailView] setPDFView:[self documentView]];
         
+        // Set default search options
         [self setCaseInsensitiveSearch:YES];
         [self setSearchBackwards:NO];
         [self setSearchLiteral:NO];
         
-        undoManager = [[NSUndoManager alloc] init];
+        // Initialize the undo manager used for navigation
+        navigationUndoManager = [[NSUndoManager alloc] init];
         
+        // Observe page changes
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
         [self pageChanged:nil];
+        
+        
     }
     return self;
 }
@@ -47,35 +53,36 @@
 }
 
 
+// Called when the page being displayed changes, unfortunately it cannot be key-value observed
 - (void)pageChanged:(NSNotification *)notification {
     PDFPage *newPage = [[self documentView] currentPage];
     NSUInteger pageIndex = [[[self documentView] document] indexForPage:newPage];
     [self setCurrentPageNumber:pageIndex + 1];
-    NSLog(@"New page: %ld", [self currentPageNumber]);
 }
+
 
 - (void)nextPage {
     [[self documentView] goToNextPage:nil];
-    [[undoManager prepareWithInvocationTarget: self] previousPage];
+    [[navigationUndoManager prepareWithInvocationTarget: self] previousPage];
 }
 
 - (void)previousPage {
     [[self documentView] goToPreviousPage:nil];
-    [[undoManager prepareWithInvocationTarget: self] nextPage];
+    [[navigationUndoManager prepareWithInvocationTarget: self] nextPage];
 }
     
 - (void)goToPageNumber:(NSUInteger)pageNumber {
     NSUInteger previousPage = [[[self documentModel] document] indexForPage:[[self documentView] currentPage]];
     PDFPage *page = [[documentModel document] pageAtIndex:pageNumber];
     [[self documentView] goToPage:page];
-    [[undoManager prepareWithInvocationTarget:self] goToPageNumber:previousPage];
+    [[navigationUndoManager prepareWithInvocationTarget:self] goToPageNumber:previousPage];
 }
 
 
 - (IBAction)navigateForward:(id)sender {
-    if ([undoManager canRedo]) {
+    if ([navigationUndoManager canRedo]) {
         // Attempt to redo
-        [undoManager redo];
+        [navigationUndoManager redo];
     } else {
         // Attempt to go forward
         [self nextPage];
@@ -83,8 +90,8 @@
 }
 
 - (IBAction)navigateBackward:(id)sender {
-    if ([undoManager canUndo]) {
-        [undoManager undo];
+    if ([navigationUndoManager canUndo]) {
+        [navigationUndoManager undo];
     } else {
         [self previousPage];
     }

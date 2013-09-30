@@ -1310,7 +1310,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {38, 17}}</string>
 								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:1535</string>
 								<bool key="NSEnabled">YES</bool>
@@ -1368,7 +1367,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{21, 14}, {61, 18}}</string>
 								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -1484,7 +1482,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 14}, {96, 22}}</string>
 								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -1558,7 +1555,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{5, 14}, {61, 18}}</string>
 								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -1602,7 +1598,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{30, 14}, {61, 18}}</string>
 								<reference key="NSSuperview"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="NSEnabled">YES</bool>
@@ -2589,47 +2584,6 @@
 					<int key="connectionID">424</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternTitle1: documentModel.documentFileName</string>
-						<reference key="source" ref="571654185"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="781898208">
-							<reference key="NSSource" ref="571654185"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">displayPatternTitle1: documentModel.documentFileName</string>
-							<string key="NSBinding">displayPatternTitle1</string>
-							<string key="NSKeyPath">documentModel.documentFileName</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{title1}@ - %{title2}@</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1059</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternTitle2: documentModel.documentURL</string>
-						<reference key="source" ref="571654185"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="571654185"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">displayPatternTitle2: documentModel.documentURL</string>
-							<string key="NSBinding">displayPatternTitle2</string>
-							<string key="NSKeyPath">documentModel.documentURL</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{title1}@ - %{title2}@</string>
-							</object>
-							<reference key="NSPreviousConnector" ref="781898208"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1093</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="600513304"/>
@@ -2642,7 +2596,7 @@
 						<string key="label">displayPatternValue1: currentPageNumber</string>
 						<reference key="source" ref="743972435"/>
 						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="750353693">
+						<object class="NSNibBindingConnector" key="connector" id="111261857">
 							<reference key="NSSource" ref="743972435"/>
 							<reference key="NSDestination" ref="1021"/>
 							<string key="NSLabel">displayPatternValue1: currentPageNumber</string>
@@ -2674,7 +2628,7 @@
 								<string key="NSNoSelectionPlaceholder">-</string>
 								<string key="NSNullPlaceholder">-</string>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="750353693"/>
+							<reference key="NSPreviousConnector" ref="111261857"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
