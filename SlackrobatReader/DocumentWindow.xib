@@ -1748,7 +1748,7 @@
 							</object>
 						</object>
 					</dictionary>
-					<array class="NSMutableArray" key="NSToolbarIBAllowedItems">
+					<array key="NSToolbarIBAllowedItems">
 						<reference ref="899485251"/>
 						<reference ref="622794138"/>
 						<reference ref="1016358915"/>
@@ -2610,15 +2610,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternTitle2: documentModel.documentFileName</string>
+						<string key="label">displayPatternTitle2: documentModel.documentURL</string>
 						<reference key="source" ref="571654185"/>
 						<reference key="destination" ref="1021"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="571654185"/>
 							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">displayPatternTitle2: documentModel.documentFileName</string>
+							<string key="NSLabel">displayPatternTitle2: documentModel.documentURL</string>
 							<string key="NSBinding">displayPatternTitle2</string>
-							<string key="NSKeyPath">documentModel.documentFileName</string>
+							<string key="NSKeyPath">documentModel.documentURL</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSDisplayPattern</string>
 								<string key="NS.object.0">%{title1}@ - %{title2}@</string>
@@ -2627,7 +2627,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1062</int>
+					<int key="connectionID">1093</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2639,15 +2639,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue1: documentView.currentPage.label</string>
+						<string key="label">displayPatternValue1: currentPageNumber</string>
 						<reference key="source" ref="743972435"/>
 						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="720163195">
+						<object class="NSNibBindingConnector" key="connector" id="750353693">
 							<reference key="NSSource" ref="743972435"/>
 							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">displayPatternValue1: documentView.currentPage.label</string>
+							<string key="NSLabel">displayPatternValue1: currentPageNumber</string>
 							<string key="NSBinding">displayPatternValue1</string>
-							<string key="NSKeyPath">documentView.currentPage.label</string>
+							<string key="NSKeyPath">currentPageNumber</string>
 							<dictionary key="NSOptions">
 								<string key="NSDisplayPattern">%{value1}@ of %{value2}@</string>
 								<string key="NSNoSelectionPlaceholder">-</string>
@@ -2656,7 +2656,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1051</int>
+					<int key="connectionID">1094</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2674,11 +2674,11 @@
 								<string key="NSNoSelectionPlaceholder">-</string>
 								<string key="NSNullPlaceholder">-</string>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="720163195"/>
+							<reference key="NSPreviousConnector" ref="750353693"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1054</int>
+					<int key="connectionID">1095</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4418,7 +4418,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1092</int>
+			<int key="maxID">1095</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

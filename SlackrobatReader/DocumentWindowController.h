@@ -22,6 +22,8 @@
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
 
+@property NSUInteger currentPageNumber;
+
 
 @property BOOL searchBackwards;
 @property BOOL caseInsensitiveSearch;

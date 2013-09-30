@@ -32,6 +32,9 @@
         [self setSearchLiteral:NO];
         
         undoManager = [[NSUndoManager alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
+        [self pageChanged:nil];
     }
     return self;
 }
@@ -44,6 +47,12 @@
 }
 
 
+- (void)pageChanged:(NSNotification *)notification {
+    PDFPage *newPage = [[self documentView] currentPage];
+    NSUInteger pageIndex = [[[self documentView] document] indexForPage:newPage];
+    [self setCurrentPageNumber:pageIndex + 1];
+    NSLog(@"New page: %ld", [self currentPageNumber]);
+}
 
 - (void)nextPage {
     [[self documentView] goToNextPage:nil];
