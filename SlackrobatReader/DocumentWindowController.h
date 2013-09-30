@@ -24,20 +24,22 @@
 
 @property NSUInteger currentPageNumber;
 
-
-@property BOOL searchBackwards;
-@property BOOL caseInsensitiveSearch;
-@property BOOL searchLiteral;
-
-@property BOOL canZoomIn;
-@property BOOL canZoomOut;
-@property BOOL canZoomToFit;
-
-
+// Navigation
 - (IBAction)navigateForward:(id)sender;
 - (IBAction)navigateBackward:(id)sender;
 - (IBAction)navigateGoTo:(id)sender;
 
+// Zooming
+- (IBAction)zoomIn:(id)sender;
+- (IBAction)zoomOut:(id)sender;
+- (IBAction)zoomToFit:(id)sender;
+
+// Searching
+@property BOOL searchBackwards;
+@property BOOL caseInsensitiveSearch;
+@property BOOL searchLiteral;
+
 - (IBAction)search:(id)sender;
+
 
 @end

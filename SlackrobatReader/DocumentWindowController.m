@@ -116,6 +116,21 @@
     }
 }
 
+
+- (IBAction)zoomIn:(id)sender {
+    [[self documentView] zoomIn:sender];
+}
+
+- (IBAction)zoomOut:(id)sender {
+    [[self documentView] zoomOut:sender];
+}
+
+- (IBAction)zoomToFit:(id)sender {
+    // This automatically forces a rescale
+    [[self documentView] setAutoScales:YES];
+}
+
+
 - (IBAction)search:(id)sender {
     NSTextField *searchBox = sender;
     NSString *searchString = [searchBox stringValue];
