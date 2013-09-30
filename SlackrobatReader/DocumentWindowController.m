@@ -22,11 +22,8 @@
 - (id)initWithDocument:(DocumentModel *)document {
     self = [super initWithWindowNibName:@"DocumentWindow"];
     if (self) {
-        // Set the document
+        // Set the document model
         [self setDocumentModel:document];
-        [[self window] setTitle:[NSString stringWithFormat:@"%@ - %@", [documentModel documentFileName], [documentModel documentURL]]];
-        [[self documentView] setDocument:[[self documentModel] document]];
-        [[self documentThumbnailView] setPDFView:[self documentView]];
         
         // Set default search options
         [self setCaseInsensitiveSearch:YES];
@@ -35,12 +32,6 @@
         
         // Initialize the undo manager used for navigation
         navigationUndoManager = [[NSUndoManager alloc] init];
-        
-        // Observe page changes
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
-        [self pageChanged:nil];
-        
-        
     }
     return self;
 }
@@ -49,7 +40,16 @@
 {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    // Hook up the document and thumbnail view
+    [[self documentView] setDocument:[[self documentModel] document]];
+    [[self documentThumbnailView] setPDFView:[self documentView]];
+    
+    // Set the window title
+//    [[self window] setTitle:[NSString stringWithFormat:@"%@ - %@", [documentModel documentFileName], [documentModel documentURL]]];
+    
+    // Observe page changes
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
+    [self pageChanged:nil];
 }
 
 
