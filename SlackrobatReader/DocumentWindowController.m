@@ -47,6 +47,10 @@
     // Observe page changes
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
     [self pageChanged:nil];
+    
+    // Set default display mode
+    [self setDisplaySinglePage:YES];
+    [self setContinuousDisplay:YES];
 }
 
 
@@ -128,6 +132,43 @@
 - (IBAction)zoomToFit:(id)sender {
     // This automatically forces a rescale
     [[self documentView] setAutoScales:YES];
+}
+
+
+- (BOOL)continuousDisplay {
+    return self->_continuousDisplay;
+}
+
+- (void)setContinuousDisplay:(BOOL)continuousDisplay {
+    self->_continuousDisplay = continuousDisplay;
+    [self setDisplayMode];
+}
+
+- (void)setDisplayMode {
+    PDFDisplayMode displayMode;
+    
+    if ([self displaySinglePage]) {
+        if ([self continuousDisplay]) {
+            displayMode = kPDFDisplaySinglePageContinuous;
+        } else {
+            displayMode = kPDFDisplaySinglePage;
+        }
+    } else {
+        if ([self continuousDisplay]) {
+            displayMode = kPDFDisplayTwoUpContinuous;
+        } else {
+            displayMode = kPDFDisplayTwoUp;
+        }
+    }
+    
+    [[self documentView] setDisplayMode:displayMode];
+}
+
+- (IBAction)displayModeChanged:(id)sender {
+    NSSegmentedControl *control = sender;
+    [self setDisplaySinglePage:[control selectedSegment] == 0];
+    
+    [self setDisplayMode];
 }
 
 

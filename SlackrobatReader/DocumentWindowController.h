@@ -13,6 +13,8 @@
 
 @interface DocumentWindowController : NSWindowController {
     NSUndoManager *navigationUndoManager;
+    
+    BOOL _continuousDisplay;
 }
 
 - (id)initWithDocument:(DocumentModel *)document;
@@ -33,6 +35,12 @@
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
 - (IBAction)zoomToFit:(id)sender;
+
+// Display Mode
+@property BOOL continuousDisplay;
+@property BOOL displaySinglePage;
+
+- (IBAction)displayModeChanged:(id)sender;
 
 // Searching
 @property BOOL searchBackwards;
