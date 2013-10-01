@@ -110,9 +110,19 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 
 
 - (void)openDocument:(DocumentModel *)documentModel {
+    // Check to see if we have another window open with the document model the user is trying to open
+    for (DocumentWindowController *window in [self openDocumentWindows]) {
+        if ([[window documentModel] isEqual:documentModel]) {
+            [[window window] makeKeyAndOrderFront:window];
+            return;
+        }
+    }
+    
+    // If the document is not open then create a window to display it in
     DocumentWindowController *documentWindow = [[DocumentWindowController alloc] initWithDocument:documentModel];
     [openDocumentWindows addObject:documentWindow];
     [documentWindow showWindow:self];
+    [[documentWindow window] makeKeyAndOrderFront:documentWindow];
 }
 
 
