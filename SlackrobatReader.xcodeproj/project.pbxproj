@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		008F74DD17FAA0800024C2A0 /* LibraryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008F74DC17FAA0800024C2A0 /* LibraryCollectionViewController.m */; };
 		C50A373817F3976500E8DDA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50A373717F3976500E8DDA1 /* Cocoa.framework */; };
 		C50A374217F3976500E8DDA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C50A374017F3976500E8DDA1 /* InfoPlist.strings */; };
 		C50A374417F3976600E8DDA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A374317F3976600E8DDA1 /* main.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		008F74DB17FAA0800024C2A0 /* LibraryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCollectionViewController.h; sourceTree = "<group>"; };
+		008F74DC17FAA0800024C2A0 /* LibraryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCollectionViewController.m; sourceTree = "<group>"; };
 		C50A373417F3976500E8DDA1 /* SlackrobatReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackrobatReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C50A373717F3976500E8DDA1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C50A373A17F3976500E8DDA1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -118,6 +121,8 @@
 				C5D7501017F3FEB700C87C65 /* DocumentWindowController.m */,
 				C510FEDC17F5421100DD6521 /* PageNumberFormatter.h */,
 				C510FEDD17F5421100DD6521 /* PageNumberFormatter.m */,
+				008F74DB17FAA0800024C2A0 /* LibraryCollectionViewController.h */,
+				008F74DC17FAA0800024C2A0 /* LibraryCollectionViewController.m */,
 			);
 			path = SlackrobatReader;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				C5D7500A17F3F3F000C87C65 /* LibraryItemViewController.m in Sources */,
 				C5D7501117F3FEB700C87C65 /* DocumentWindowController.m in Sources */,
 				C510FEDE17F5421100DD6521 /* PageNumberFormatter.m in Sources */,
+				008F74DD17FAA0800024C2A0 /* LibraryCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

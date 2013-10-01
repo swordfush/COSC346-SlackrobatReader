@@ -10,4 +10,6 @@
 
 @interface LibraryItemViewController : NSCollectionViewItem
 
+@property NSString *itemPath;
+
 @end
