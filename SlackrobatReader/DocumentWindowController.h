@@ -24,6 +24,9 @@
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
 
+@property (strong) IBOutlet NSMenu *mainMenu;
+
+
 @property NSUInteger currentPageNumber;
 
 // Navigation

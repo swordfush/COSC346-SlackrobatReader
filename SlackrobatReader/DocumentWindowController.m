@@ -48,6 +48,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
     [self pageChanged:nil];
     
+    // Set the main menu
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:nil];
+    
     // Set default display mode
     [self setDisplaySinglePage:YES];
     [self setContinuousDisplay:YES];
@@ -59,6 +62,11 @@
     PDFPage *newPage = [[self documentView] currentPage];
     NSUInteger pageIndex = [[[self documentView] document] indexForPage:newPage];
     [self setCurrentPageNumber:pageIndex + 1];
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    NSLog(@"%@ became key", self);
+    [NSApp setMainMenu:[self mainMenu]];
 }
 
 

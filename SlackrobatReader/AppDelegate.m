@@ -29,6 +29,7 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     openDocumentWindows = [[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:nil];
 }
 
 - (void)awakeFromNib {
@@ -52,6 +53,11 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     
     // Subscribe to the selection index so we can disable the remove button when needed
     [[self libraryItemsView] addObserver:self forKeyPath:@"selectionIndexes" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)windowDidBecomeMain:(NSNotification *)notification {
+    NSLog(@"%@ became key", self);
+    [NSApp setMainMenu:[self mainMenu]];
 }
 
 
