@@ -29,6 +29,16 @@
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[DocumentModel class]]) {
+        DocumentModel *other = object;
+        return [[self documentURL] isEqual:[other documentURL]];
+    } else {
+        // Object's type is unkown
+        return NO;
+    }
+}
+
 
 
 @end

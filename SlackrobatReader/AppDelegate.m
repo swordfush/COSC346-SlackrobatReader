@@ -127,21 +127,12 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     
     [fileDialog beginWithCompletionHandler:^(NSInteger result){
         NSURL *url = [fileDialog URLs][0];
+        DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:url];
         
-        // Check that the file is not already in the library
-        BOOL alreadyExists = NO;
-        for (DocumentModel *m in libraryItems) {
-            if ([[m documentURL] isEqual:url]) {
-                alreadyExists = YES;
-                break;
-            }
-        }
-        
-        if (alreadyExists) {
+        if ([libraryItems containsObject:model]) {
             NSAlert *alert = [NSAlert alertWithMessageText:@"That document is already in the library!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
             [alert runModal];
         } else {
-            DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:url];
             [self insertObject:model inLibraryItemsAtIndex:[libraryItems count]];
         }
     }];
