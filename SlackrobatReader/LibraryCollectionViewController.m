@@ -14,10 +14,12 @@
 @implementation LibraryCollectionViewController
 
 
+// Override the creation of collection view items so that we can tell them about the document they represent
 - (NSCollectionViewItem *)newItemForRepresentedObject:(id)object {
     // Super class creates an instance of LibraryItemViewController
     LibraryItemViewController *newItem = (LibraryItemViewController *)[super newItemForRepresentedObject:object];
     
+    // We then tell the collection view item what path it is representing
     DocumentModel *model = (DocumentModel *)object;
     [newItem setItemPath:[[model documentURL] path]];
     

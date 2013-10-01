@@ -34,9 +34,6 @@
     [super setSelected:flag];
     [(LibraryItemView *)[self view] setSelected:flag];
     [(LibraryItemView *)[self view] setNeedsDisplay:YES];
-    
-//    [self setItemPath:@"/Users/Maddy/stuart/test.pdf"];
-    NSLog(@"%@ exists: %i", [self itemPath], [[NSFileManager defaultManager] fileExistsAtPath:[self itemPath]]);
 }
 
 @end
