@@ -20,5 +20,6 @@
 
 @property (weak) IBOutlet NSCollectionView *libraryItemsView;
 @property (weak) IBOutlet NSButton *removeItemButton;
+@property (weak) IBOutlet NSMenuItem *removeItemMenuItem;
 
 @end

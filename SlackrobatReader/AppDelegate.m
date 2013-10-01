@@ -90,13 +90,23 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 }
 
 
+- (BOOL) validateMenuItem:(NSMenuItem *)menuItem {
+    if (menuItem == [self removeItemMenuItem]) {
+        // Only enable the remove menu item when we have a selection
+        return [[[self libraryItemsView] selectionIndexes] count] > 0;
+    }
+    
+    return YES;
+}
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath compare:@"selectionIndexes"] == NSOrderedSame) {
         // Enable/disable remove library item button
         NSIndexSet *indices = change[@"new"];
         
-        [[self removeItemButton] setEnabled:[indices count] > 0];
+        BOOL removeEnabled = [indices count] > 0;
+        [[self removeItemButton] setEnabled:removeEnabled];
     }
 }
 
@@ -106,7 +116,6 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     DocumentModel *itemModel = libraryItems[index];
     [self openDocument:itemModel];
 }
-
 
 
 - (void)openDocument:(DocumentModel *)documentModel {
@@ -122,7 +131,6 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     DocumentWindowController *documentWindow = [[DocumentWindowController alloc] initWithDocument:documentModel];
     [openDocumentWindows addObject:documentWindow];
     [documentWindow showWindow:self];
-    [[documentWindow window] makeKeyAndOrderFront:documentWindow];
 }
 
 
