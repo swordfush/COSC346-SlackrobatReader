@@ -122,13 +122,28 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     [fileDialog setAllowsMultipleSelection:NO];
     [fileDialog setCanChooseDirectories:NO];
     [fileDialog setCanChooseFiles:YES];
-    [fileDialog setFloatingPanel:YES]; // Test this
+    [fileDialog setFloatingPanel:YES];
     [fileDialog setAllowedFileTypes:[NSArray arrayWithObjects:@"pdf", nil]];
     
     [fileDialog beginWithCompletionHandler:^(NSInteger result){
         NSURL *url = [fileDialog URLs][0];
-        DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:url];
-        [self insertObject:model inLibraryItemsAtIndex:[libraryItems count]];
+        
+        // Check that the file is not already in the library
+        BOOL alreadyExists = NO;
+        for (DocumentModel *m in libraryItems) {
+            if ([[m documentURL] isEqual:url]) {
+                alreadyExists = YES;
+                break;
+            }
+        }
+        
+        if (alreadyExists) {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"That document is already in the library!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+            [alert runModal];
+        } else {
+            DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:url];
+            [self insertObject:model inLibraryItemsAtIndex:[libraryItems count]];
+        }
     }];
 }
 
