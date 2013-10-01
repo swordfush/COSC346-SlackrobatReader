@@ -24,7 +24,9 @@
     if (self) {
         documentURL = url;
         self->documentFileName = [[url lastPathComponent] stringByDeletingPathExtension];
-        document = [[PDFDocument alloc] initWithURL:url];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:[documentURL path]]) {
+            document = [[PDFDocument alloc] initWithURL:url];
+        }
     }
     return self;
 }

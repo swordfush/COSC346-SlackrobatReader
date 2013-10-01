@@ -30,6 +30,7 @@ NSString * const LibraryItemsKey = @"LibraryItems";
 {
     openDocumentWindows = [[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:nil];
+    libraryUndoManager = [[NSUndoManager alloc] init];
 }
 
 - (void)awakeFromNib {
@@ -153,12 +154,7 @@ NSString * const LibraryItemsKey = @"LibraryItems";
         NSURL *url = [fileDialog URLs][0];
         DocumentModel *model = [[DocumentModel alloc] initWithPDFAtURL:url];
         
-        if ([libraryItems containsObject:model]) {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"That document is already in the library!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-            [alert runModal];
-        } else {
-            [self insertObject:model inLibraryItemsAtIndex:[libraryItems count]];
-        }
+        [self addLibraryItem:model];
     }];
 }
 
@@ -166,11 +162,41 @@ NSString * const LibraryItemsKey = @"LibraryItems";
     // Find the index selected and remove it
     NSIndexSet *indices = [self.libraryItemsView selectionIndexes];
     if ([indices count] > 0) {
-        [self removeObjectFromLibraryItemsAtIndex:[indices firstIndex]];
+        [self removeLibraryItem:[[self libraryItems] objectAtIndex:[indices firstIndex]]];
     }
-    
-    // Unfortunately removing an item does not cause the collection view to update its selection, so we'll deselect everything manually
-    [self.libraryItemsView setSelectionIndexes:[NSIndexSet indexSet]];
+}
+
+- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
+{
+    return self->libraryUndoManager;
+}
+
+- (void)removeLibraryItem:(DocumentModel *)item {
+    NSUInteger index = [libraryItems indexOfObject:item];
+    if (index == NSNotFound) {
+        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Cannot remove the document %@ as it is no longer in the library!", [item documentFileName]] defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        [alert runModal];
+    } else {
+        [self removeObjectFromLibraryItemsAtIndex:index];
+        
+        // Unfortunately removing an item does not cause the collection view to update its selection, so we'll deselect everything manually
+        [[self libraryItemsView] setSelectionIndexes:[NSIndexSet indexSet]];
+        
+        [libraryUndoManager setActionName:[NSString stringWithFormat:@"Remove %@ From Library", [item documentFileName]]];
+        [[libraryUndoManager prepareWithInvocationTarget: self] addLibraryItem:item];
+    }
+}
+
+- (void)addLibraryItem:(DocumentModel *)item {
+    if ([libraryItems containsObject:item]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"%@ is already in the library!", [item documentFileName]] defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        [alert runModal];
+    } else {
+        [self insertObject:item inLibraryItemsAtIndex:[libraryItems count]];
+        
+        [libraryUndoManager setActionName:[NSString stringWithFormat:@"Add %@ To Library", [item documentFileName]]];
+        [[libraryUndoManager prepareWithInvocationTarget: self] removeLibraryItem:item];
+    }
 }
 
 @end

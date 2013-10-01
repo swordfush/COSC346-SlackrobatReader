@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    NSUndoManager *libraryUndoManager;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 
