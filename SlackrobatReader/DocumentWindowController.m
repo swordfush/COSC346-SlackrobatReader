@@ -77,6 +77,20 @@
 }
 
 
+// Hide the toolbar when entering fullscreen
+- (NSApplicationPresentationOptions)window:(NSWindow *)window willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
+    return NSApplicationPresentationAutoHideToolbar | proposedOptions;
+}
+
+- (void)windowWillEnterFullScreen:(NSNotification *)notification {
+    
+}
+
+- (void)windowWillExitFullScreen:(NSNotification *)notification {
+    
+}
+
+
 // Called when the page being displayed changes, unfortunately it cannot be key-value observed
 - (void)pageChanged:(NSNotification *)notification {
     PDFPage *newPage = [[self documentView] currentPage];

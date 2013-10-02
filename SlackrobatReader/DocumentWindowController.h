@@ -11,7 +11,7 @@
 
 #import "DocumentModel.h"
 
-@interface DocumentWindowController : NSWindowController {
+@interface DocumentWindowController : NSWindowController <NSWindowDelegate> {
     NSUndoManager *navigationUndoManager;
     
     BOOL _continuousDisplay;
