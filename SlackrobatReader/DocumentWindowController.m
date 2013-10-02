@@ -48,12 +48,32 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageChanged:) name:PDFViewPageChangedNotification object:nil];
     [self pageChanged:nil];
     
-    // Set the main menu
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:nil];
-    
     // Set default display mode
     [self setDisplaySinglePage:YES];
     [self setContinuousDisplay:YES];
+}
+
+- (void)keyDown:(NSEvent *)theEvent
+{
+    NSString *chars = [theEvent charactersIgnoringModifiers];
+    
+    if ([chars length] > 0) {
+        unichar code = [chars characterAtIndex:0];
+        
+        switch (code)
+        {
+            case NSLeftArrowFunctionKey:
+            {
+                [self previousPage];
+                break;
+            }
+            case NSRightArrowFunctionKey:
+            {
+                [self nextPage];
+                break;
+            }
+        }
+    }
 }
 
 
@@ -63,12 +83,6 @@
     NSUInteger pageIndex = [[[self documentView] document] indexForPage:newPage];
     [self setCurrentPageNumber:pageIndex + 1];
 }
-
-- (void)windowDidBecomeMain:(NSNotification *)notification {
-    NSLog(@"%@ became key", self);
-    [NSApp setMainMenu:[self mainMenu]];
-}
-
 
 - (void)nextPage {
     [[self documentView] goToNextPage:nil];
@@ -183,6 +197,12 @@
 - (IBAction)search:(id)sender {
     NSTextField *searchBox = sender;
     NSString *searchString = [searchBox stringValue];
+    
+    // If the search string is empty then clear the current search
+    if ([searchString length] == 0) {
+        [[self documentView] setCurrentSelection:nil];
+        return;
+    }
 
     // Set up the search options
     int searchOptions = 0;

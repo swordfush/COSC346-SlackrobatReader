@@ -24,6 +24,7 @@
 		C50A374B17F3976700E8DDA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A374A17F3976700E8DDA1 /* AppDelegate.m */; };
 		C50A374E17F3976700E8DDA1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50A374C17F3976700E8DDA1 /* MainMenu.xib */; };
 		C50A375617F3988800E8DDA1 /* DocumentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A375517F3988800E8DDA1 /* DocumentModel.m */; };
+		C50B221117FCDDDF00C32DA4 /* DocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C50B221017FCDDDF00C32DA4 /* DocumentView.m */; };
 		C510FEDE17F5421100DD6521 /* PageNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C510FEDD17F5421100DD6521 /* PageNumberFormatter.m */; };
 		C5D7500717F3F19700C87C65 /* LibraryItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7500617F3F19700C87C65 /* LibraryItemView.m */; };
 		C5D7500A17F3F3F000C87C65 /* LibraryItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D7500917F3F3F000C87C65 /* LibraryItemViewController.m */; };
@@ -59,6 +60,8 @@
 		C50A374D17F3976700E8DDA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C50A375417F3988800E8DDA1 /* DocumentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentModel.h; sourceTree = "<group>"; };
 		C50A375517F3988800E8DDA1 /* DocumentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentModel.m; sourceTree = "<group>"; };
+		C50B220F17FCDDDF00C32DA4 /* DocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentView.h; sourceTree = "<group>"; };
+		C50B221017FCDDDF00C32DA4 /* DocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentView.m; sourceTree = "<group>"; };
 		C510FEDC17F5421100DD6521 /* PageNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageNumberFormatter.h; sourceTree = "<group>"; };
 		C510FEDD17F5421100DD6521 /* PageNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageNumberFormatter.m; sourceTree = "<group>"; };
 		C5D7500517F3F19700C87C65 /* LibraryItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryItemView.h; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				C510FEDD17F5421100DD6521 /* PageNumberFormatter.m */,
 				008F74DB17FAA0800024C2A0 /* LibraryCollectionViewController.h */,
 				008F74DC17FAA0800024C2A0 /* LibraryCollectionViewController.m */,
+				C50B220F17FCDDDF00C32DA4 /* DocumentView.h */,
+				C50B221017FCDDDF00C32DA4 /* DocumentView.m */,
 			);
 			path = SlackrobatReader;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				C5D7501117F3FEB700C87C65 /* DocumentWindowController.m in Sources */,
 				C510FEDE17F5421100DD6521 /* PageNumberFormatter.m in Sources */,
 				008F74DD17FAA0800024C2A0 /* LibraryCollectionViewController.m in Sources */,
+				C50B221117FCDDDF00C32DA4 /* DocumentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
