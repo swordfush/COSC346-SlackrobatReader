@@ -53,6 +53,8 @@
     [self setContinuousDisplay:YES];
     
     [[self documentView] setAutoScales:YES];
+    
+    [[self splitView] setPosition:0 ofDividerAtIndex:0];
 }
 
 - (void)keyDown:(NSEvent *)theEvent
