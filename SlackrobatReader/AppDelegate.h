@@ -28,4 +28,9 @@
 @property (weak) IBOutlet NSMenuItem *matchCaseMenuItem;
 @property (weak) IBOutlet NSMenuItem *matchLiteralMenuItem;
 
+@property (weak) IBOutlet NSMenuItem *singlePageMenuItem;
+@property (weak) IBOutlet NSMenuItem *singlePageContinuousMenuItem;
+@property (weak) IBOutlet NSMenuItem *twoPageMenuItem;
+@property (weak) IBOutlet NSMenuItem *twoPageContinuousMenuItem;
+
 @end

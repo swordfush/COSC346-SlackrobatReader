@@ -1142,6 +1142,38 @@
 					<int key="connectionID">835</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">singlePageMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="889380605"/>
+					</object>
+					<int key="connectionID">836</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">singlePageContinuousMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="510213066"/>
+					</object>
+					<int key="connectionID">837</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">twoPageMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="860410072"/>
+					</object>
+					<int key="connectionID">838</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">twoPageContinuousMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="717523596"/>
+					</object>
+					<int key="connectionID">839</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">contentArray: libraryItems</string>
 						<reference key="source" ref="992731106"/>
@@ -2334,7 +2366,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">835</int>
+			<int key="maxID">839</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -64,6 +64,8 @@
     [self setCaseInsensitiveSearch:[self caseInsensitiveSearch]];
     [self setSearchLiteral:[self searchLiteral]];
     [self setSearchBackwards:[self searchBackwards]];
+    
+    [self setDisplayMode:[[self documentView] displayMode]];
 }
 
 
@@ -215,21 +217,41 @@
     [[self documentView] setScaleFactor:viewHeight / docHeight];
 }
 
+- (void)setDisplayMode:(PDFDisplayMode)mode {
+    [[self documentView] setDisplayMode:mode];
+    
+    AppDelegate *app = [NSApp delegate];
+    [[app singlePageMenuItem] setState:NSOffState];
+    [[app singlePageContinuousMenuItem] setState:NSOffState];
+    [[app twoPageMenuItem] setState:NSOffState];
+    [[app twoPageContinuousMenuItem] setState:NSOffState];
+    
+    if (mode == kPDFDisplaySinglePage) {
+        [[app singlePageMenuItem] setState:NSOnState];
+    } else if (mode == kPDFDisplaySinglePageContinuous) {
+        [[app singlePageContinuousMenuItem] setState:NSOnState];
+    } else if (mode == kPDFDisplayTwoUp) {
+        [[app twoPageMenuItem] setState:NSOnState];
+    } else if (mode == kPDFDisplayTwoUpContinuous) {
+        [[app twoPageContinuousMenuItem] setState:NSOnState];
+    }
+}
+
 
 - (IBAction)displaySinglePage:(id)sender {
-    [[self documentView] setDisplayMode:kPDFDisplaySinglePage];
+    [self setDisplayMode:kPDFDisplaySinglePage];
 }
 
 - (IBAction)displaySinglePageContinuous:(id)sender {
-    [[self documentView] setDisplayMode:kPDFDisplaySinglePageContinuous];
+    [self setDisplayMode:kPDFDisplaySinglePageContinuous];
 }
 
 - (IBAction)displayTwoPage:(id)sender {
-    [[self documentView] setDisplayMode:kPDFDisplayTwoUp];
+    [self setDisplayMode:kPDFDisplayTwoUp];
 }
 
 - (IBAction)displayTwoPageContinuous:(id)sender {
-    [[self documentView] setDisplayMode:kPDFDisplayTwoUpContinuous];
+    [self setDisplayMode:kPDFDisplayTwoUpContinuous];
 }
 
 
