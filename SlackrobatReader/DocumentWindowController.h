@@ -11,8 +11,10 @@
 
 #import "DocumentModel.h"
 
-@interface DocumentWindowController : NSWindowController <NSWindowDelegate> {
+@interface DocumentWindowController : NSWindowController <NSWindowDelegate, NSSplitViewDelegate> {
     NSUndoManager *navigationUndoManager;
+    
+    BOOL isFullScreen;
     
     BOOL _continuousDisplay;
 }
@@ -23,6 +25,7 @@
 
 @property (weak) IBOutlet PDFView *documentView;
 @property (weak) IBOutlet PDFThumbnailView *documentThumbnailView;
+@property (weak) IBOutlet NSSplitView *splitView;
 
 @property (strong) IBOutlet NSMenu *mainMenu;
 

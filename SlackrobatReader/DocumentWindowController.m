@@ -83,11 +83,29 @@
 }
 
 - (void)windowWillEnterFullScreen:(NSNotification *)notification {
+    isFullScreen = YES;
     
+    BOOL isCollapsed = [[self splitView] isSubviewCollapsed:[[[self splitView] subviews] objectAtIndex:0]];
+    if (!isCollapsed) {
+        // Hide the thumbnail view
+        [[self splitView] setPosition:0 ofDividerAtIndex:0];
+    }
 }
 
 - (void)windowWillExitFullScreen:(NSNotification *)notification {
-    
+    isFullScreen = NO;
+    [[self splitView] setPosition:1 ofDividerAtIndex:0];
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview
+{
+    // Allow the left subview to be collapsed
+    return subview == [[splitView subviews] objectAtIndex:0];
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView shouldHideDividerAtIndex:(NSInteger)dividerIndex
+{
+    return dividerIndex == 0 && isFullScreen;
 }
 
 
