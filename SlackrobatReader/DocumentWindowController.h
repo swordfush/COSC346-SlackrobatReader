@@ -15,8 +15,6 @@
     NSUndoManager *navigationUndoManager;
     
     BOOL isFullScreen;
-    
-    BOOL _continuousDisplay;
 }
 
 - (id)initWithDocument:(DocumentModel *)document;
@@ -36,6 +34,8 @@
 - (IBAction)navigateForward:(id)sender;
 - (IBAction)navigateBackward:(id)sender;
 - (IBAction)navigateGoTo:(id)sender;
+- (IBAction)nextPage:(id)sender;
+- (IBAction)previousPage:(id)sender;
 
 // Zooming
 - (IBAction)zoomIn:(id)sender;
@@ -44,10 +44,10 @@
 - (IBAction)zoomToFitVertically:(id)sender;
 
 // Display Mode
-@property BOOL continuousDisplay;
-@property BOOL displaySinglePage;
-
-- (IBAction)displayModeChanged:(id)sender;
+- (IBAction)displaySinglePage:(id)sender;
+- (IBAction)displaySinglePageContinuous:(id)sender;
+- (IBAction)displayTwoPage:(id)sender;
+- (IBAction)displayTwoPageContinuous:(id)sender;
 
 // Searching
 @property BOOL searchBackwards;

@@ -49,11 +49,11 @@
     [self pageChanged:nil];
     
     // Set default display mode
-    [self setDisplaySinglePage:YES];
-    [self setContinuousDisplay:YES];
+    [[self documentView] setDisplayMode:kPDFDisplaySinglePageContinuous];
     
     [[self documentView] setAutoScales:YES];
     
+    // Hide thumbnail view
     [[self splitView] setPosition:0 ofDividerAtIndex:0];
 }
 
@@ -68,12 +68,12 @@
         {
             case NSLeftArrowFunctionKey:
             {
-                [self previousPage];
+                [self previousPage:nil];
                 break;
             }
             case NSRightArrowFunctionKey:
             {
-                [self nextPage];
+                [self nextPage:nil];
                 break;
             }
         }
@@ -124,14 +124,14 @@
     [self setCurrentPageNumber:pageIndex + 1];
 }
 
-- (void)nextPage {
+- (IBAction)nextPage:(id)sender {
     [[self documentView] goToNextPage:nil];
-    [[navigationUndoManager prepareWithInvocationTarget: self] previousPage];
+    [[navigationUndoManager prepareWithInvocationTarget: self] previousPage:sender];
 }
 
-- (void)previousPage {
+- (IBAction)previousPage:(id)sender {
     [[self documentView] goToPreviousPage:nil];
-    [[navigationUndoManager prepareWithInvocationTarget: self] nextPage];
+    [[navigationUndoManager prepareWithInvocationTarget: self] nextPage:sender];
 }
     
 - (void)goToPageNumber:(NSUInteger)pageNumber {
@@ -148,7 +148,7 @@
         [navigationUndoManager redo];
     } else {
         // Attempt to go forward
-        [self nextPage];
+        [self nextPage:sender];
     }
 }
 
@@ -156,7 +156,7 @@
     if ([navigationUndoManager canUndo]) {
         [navigationUndoManager undo];
     } else {
-        [self previousPage];
+        [self previousPage:sender];
     }
 }
 
@@ -205,43 +205,21 @@
     [[self documentView] setScaleFactor:viewHeight / docHeight];
 }
 
-
-- (BOOL)continuousDisplay {
-    return self->_continuousDisplay;
+- (IBAction)displaySinglePage:(id)sender {
+    [[self documentView] setDisplayMode:kPDFDisplaySinglePage];
 }
 
-- (void)setContinuousDisplay:(BOOL)continuousDisplay {
-    self->_continuousDisplay = continuousDisplay;
-    [self setDisplayMode];
+- (IBAction)displaySinglePageContinuous:(id)sender {
+    [[self documentView] setDisplayMode:kPDFDisplaySinglePageContinuous];
 }
 
-- (void)setDisplayMode {
-    PDFDisplayMode displayMode;
-    
-    if ([self displaySinglePage]) {
-        if ([self continuousDisplay]) {
-            displayMode = kPDFDisplaySinglePageContinuous;
-        } else {
-            displayMode = kPDFDisplaySinglePage;
-        }
-    } else {
-        if ([self continuousDisplay]) {
-            displayMode = kPDFDisplayTwoUpContinuous;
-        } else {
-            displayMode = kPDFDisplayTwoUp;
-        }
-    }
-    
-    [[self documentView] setDisplayMode:displayMode];
+- (IBAction)displayTwoPage:(id)sender {
+    [[self documentView] setDisplayMode:kPDFDisplayTwoUp];
 }
 
-- (IBAction)displayModeChanged:(id)sender {
-    NSSegmentedControl *control = sender;
-    [self setDisplaySinglePage:[control selectedSegment] == 0];
-    
-    [self setDisplayMode];
+- (IBAction)displayTwoPageContinuous:(id)sender {
+    [[self documentView] setDisplayMode:kPDFDisplayTwoUpContinuous];
 }
-
 
 - (IBAction)search:(id)sender {
     NSTextField *searchBox = sender;
