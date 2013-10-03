@@ -54,6 +54,11 @@
 @property BOOL caseInsensitiveSearch;
 @property BOOL searchLiteral;
 
+- (IBAction)toggleSearchBackwards:(id)sender;
+- (IBAction)toggleIgnoreCase:(id)sender;
+- (IBAction)toggleSearchLiteral:(id)sender;
+
+
 - (IBAction)search:(id)sender;
 
 

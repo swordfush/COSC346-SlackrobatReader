@@ -24,7 +24,5 @@
 @property (weak) IBOutlet NSButton *removeItemButton;
 @property (weak) IBOutlet NSMenuItem *removeItemMenuItem;
 
-@property (weak) IBOutlet NSMenu *mainMenu;
-
 
 @end

@@ -205,6 +205,7 @@
     [[self documentView] setScaleFactor:viewHeight / docHeight];
 }
 
+
 - (IBAction)displaySinglePage:(id)sender {
     [[self documentView] setDisplayMode:kPDFDisplaySinglePage];
 }
@@ -220,6 +221,20 @@
 - (IBAction)displayTwoPageContinuous:(id)sender {
     [[self documentView] setDisplayMode:kPDFDisplayTwoUpContinuous];
 }
+
+
+- (IBAction)toggleSearchBackwards:(id)sender {
+    [self setSearchBackwards:![self searchBackwards]];
+}
+
+- (IBAction)toggleIgnoreCase:(id)sender {
+    [self setCaseInsensitiveSearch:![self caseInsensitiveSearch]];
+}
+
+- (IBAction)toggleSearchLiteral:(id)sender {
+    [self setSearchLiteral:![self searchLiteral]];
+}
+
 
 - (IBAction)search:(id)sender {
     NSTextField *searchBox = sender;
