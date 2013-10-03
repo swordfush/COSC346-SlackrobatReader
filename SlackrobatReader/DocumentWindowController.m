@@ -10,6 +10,8 @@
 
 #import "PageNumberFormatter.h"
 
+#import "AppDelegate.h"
+
 
 @interface DocumentWindowController ()
 
@@ -56,6 +58,14 @@
     // Hide thumbnail view
     [[self splitView] setPosition:0 ofDividerAtIndex:0];
 }
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    // Cheap way to reset the check boxes
+    [self setCaseInsensitiveSearch:[self caseInsensitiveSearch]];
+    [self setSearchLiteral:[self searchLiteral]];
+    [self setSearchBackwards:[self searchBackwards]];
+}
+
 
 - (void)keyDown:(NSEvent *)theEvent
 {
@@ -233,6 +243,36 @@
 
 - (IBAction)toggleSearchLiteral:(id)sender {
     [self setSearchLiteral:![self searchLiteral]];
+}
+
+- (BOOL)searchBackwards {
+    return _searchBackwards;
+}
+
+- (void)setSearchBackwards:(BOOL)searchBackwards {
+    _searchBackwards = searchBackwards;
+    NSInteger state = searchBackwards ? NSOnState : NSOffState;
+    [[(AppDelegate *)[NSApp delegate] searchBackwardsMenuItem] setState:state];;
+}
+
+- (BOOL)searchLiteral {
+    return _searchLiteral;
+}
+
+- (void)setSearchLiteral:(BOOL)searchLiteral {
+    _searchLiteral = searchLiteral;
+    NSInteger state = searchLiteral ? NSOnState : NSOffState;
+    [[(AppDelegate *)[NSApp delegate] matchLiteralMenuItem] setState:state];;
+}
+
+- (BOOL)caseInsensitiveSearch {
+    return _caseInsensitiveSearch;
+}
+
+- (void)setCaseInsensitiveSearch:(BOOL)caseInsensitiveSearch {
+    _caseInsensitiveSearch = caseInsensitiveSearch;
+    NSInteger state = caseInsensitiveSearch ? NSOnState : NSOffState;
+    [[(AppDelegate *)[NSApp delegate] matchCaseMenuItem] setState:state];;
 }
 
 

@@ -14,6 +14,10 @@
 @interface DocumentWindowController : NSWindowController <NSWindowDelegate, NSSplitViewDelegate> {
     NSUndoManager *navigationUndoManager;
     
+    BOOL _searchBackwards;
+    BOOL _searchLiteral;
+    BOOL _caseInsensitiveSearch;
+    
     BOOL isFullScreen;
 }
 

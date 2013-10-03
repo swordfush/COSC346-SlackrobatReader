@@ -24,5 +24,8 @@
 @property (weak) IBOutlet NSButton *removeItemButton;
 @property (weak) IBOutlet NSMenuItem *removeItemMenuItem;
 
+@property (weak) IBOutlet NSMenuItem *searchBackwardsMenuItem;
+@property (weak) IBOutlet NSMenuItem *matchCaseMenuItem;
+@property (weak) IBOutlet NSMenuItem *matchLiteralMenuItem;
 
 @end
