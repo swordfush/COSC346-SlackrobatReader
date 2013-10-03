@@ -51,6 +51,8 @@
     // Set default display mode
     [self setDisplaySinglePage:YES];
     [self setContinuousDisplay:YES];
+    
+    [[self documentView] setAutoScales:YES];
 }
 
 - (void)keyDown:(NSEvent *)theEvent
@@ -90,6 +92,10 @@
         // Hide the thumbnail view
         [[self splitView] setPosition:0 ofDividerAtIndex:0];
     }
+}
+
+- (void)windowDidEnterFullScreen:(NSNotification *)notification {
+    [self zoomToFitVertically:self];
 }
 
 - (void)windowWillExitFullScreen:(NSNotification *)notification {
@@ -184,8 +190,17 @@
 }
 
 - (IBAction)zoomToFit:(id)sender {
-    // This automatically forces a rescale
+    // This forces a fit, and is better than manually doing it
     [[self documentView] setAutoScales:YES];
+//    CGFloat viewWidth = [[self documentView] frame].size.width;
+//    CGFloat docWidth = [[[self documentView] currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size.width;
+//    [[self documentView] setScaleFactor:viewWidth / docWidth];
+}
+
+- (IBAction)zoomToFitVertically:(id)sender {
+    CGFloat viewHeight = [[self documentView] frame].size.height;
+    CGFloat docHeight = [[[self documentView] currentPage] boundsForBox:kPDFDisplayBoxMediaBox].size.height;
+    [[self documentView] setScaleFactor:viewHeight / docHeight];
 }
 
 

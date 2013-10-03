@@ -41,6 +41,7 @@
 - (IBAction)zoomIn:(id)sender;
 - (IBAction)zoomOut:(id)sender;
 - (IBAction)zoomToFit:(id)sender;
+- (IBAction)zoomToFitVertically:(id)sender;
 
 // Display Mode
 @property BOOL continuousDisplay;
